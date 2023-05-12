@@ -1,0 +1,3 @@
+run:
+  binary:
+    source: https://github.com/drone-plugins/drone-buildx-ecr/releases/download/{{ release }}/drone-buildx-ecr-{{ os }}-{{ arch }}.zst
