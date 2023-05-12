@@ -9,7 +9,7 @@ require (
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/drone-plugins/drone-buildx v1.0.2-0.20230511212134-815f3f7df894 // indirect
+	github.com/drone-plugins/drone-buildx v1.0.2-0.20230512061850-99d0da95877e // indirect
 	github.com/drone/drone-go v1.7.1 // indirect
 	github.com/inhies/go-bytesize v0.0.0-20210819104631-275770b98743 // indirect
 	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
