@@ -40,7 +40,7 @@ func main() {
 		assumeRole       = getenv("PLUGIN_ASSUME_ROLE")
 		externalId       = getenv("PLUGIN_EXTERNAL_ID")
 		scanOnPush       = parseBoolOrDefault(false, getenv("PLUGIN_SCAN_ON_PUSH"))
-		idToken          = os.Getenv("PLUGIN_OIDC_TOKEN_ID")
+		idToken          = getenv("PLUGIN_OIDC_TOKEN_ID")
 	)
 
 	// set the region
