@@ -40,6 +40,7 @@ func main() {
 		assumeRole       = getenv("PLUGIN_ASSUME_ROLE")
 		externalId       = getenv("PLUGIN_EXTERNAL_ID")
 		scanOnPush       = parseBoolOrDefault(false, getenv("PLUGIN_SCAN_ON_PUSH"))
+		idToken          = getenv("PLUGIN_OIDC_TOKEN_ID")
 	)
 
 	// set the region
@@ -59,7 +60,7 @@ func main() {
 		log.Fatal(fmt.Sprintf("error creating aws session: %v", err))
 	}
 
-	svc := getECRClient(sess, assumeRole, externalId)
+	svc := getECRClient(sess, assumeRole, externalId, idToken)
 	username, password, defaultRegistry, err := getAuthInfo(svc)
 
 	if registry == "" {
@@ -205,11 +206,29 @@ func getenv(key ...string) (s string) {
 	return
 }
 
-func getECRClient(sess *session.Session, role string, externalId string) *ecr.ECR {
+func getECRClient(sess *session.Session, role string, externalId string, idToken string) *ecr.ECR {
 	if role == "" {
 		return ecr.New(sess)
 	}
-	if externalId != "" {
+	if idToken != "" {
+		tempFile, err := os.CreateTemp("/tmp", "idToken-*.jwt")
+		if err != nil {
+			log.Fatalf("Failed to create temporary file: %v", err)
+		}
+		defer tempFile.Close()
+
+		if err := os.Chmod(tempFile.Name(), 0600); err != nil {
+			log.Fatalf("Failed to set file permissions: %v", err)
+		}
+
+		if _, err := tempFile.WriteString(idToken); err != nil {
+			log.Fatalf("Failed to write ID token to temporary file: %v", err)
+		}
+
+		// Create credentials using the path to the ID token file
+		creds := stscreds.NewWebIdentityCredentials(sess, role, "", tempFile.Name())
+		return ecr.New(sess, &aws.Config{Credentials: creds})
+	} else if externalId != "" {
 		return ecr.New(sess, &aws.Config{
 			Credentials: stscreds.NewCredentials(sess, role, func(p *stscreds.AssumeRoleProvider) {
 				p.ExternalID = &externalId
