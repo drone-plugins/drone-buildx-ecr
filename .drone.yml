@@ -80,7 +80,7 @@ depends_on:
 
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/*
     - "refs/pull/**"
 
@@ -122,7 +122,7 @@ depends_on:
 
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - refs/tags/*
     - "refs/pull/**"
 
@@ -177,7 +177,7 @@ steps:
 
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - "refs/tags/**"
     - "refs/pull/**"
 
@@ -237,7 +237,7 @@ steps:
 
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - "refs/tags/**"
     - "refs/pull/**"
 
@@ -269,7 +269,7 @@ steps:
 
 trigger:
   ref:
-    - refs/heads/master
+    - refs/heads/main
     - "refs/tags/**"
 
 depends_on:
