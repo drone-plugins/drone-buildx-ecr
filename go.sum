@@ -14,6 +14,8 @@ github.com/drone-plugins/drone-buildx v1.1.11 h1:VptLGoYpU1bRASm70kDsb25Cw7XjcDb
 github.com/drone-plugins/drone-buildx v1.1.11/go.mod h1:loDc/WeyLXbxABq23i8avR9V4u8t+vVDw7l41Tv2/nk=
 github.com/drone-plugins/drone-buildx v1.1.13 h1:C9TalQBFOEWWIgiTTTtHFcNIgoyGuYF8rd26UXK1AX0=
 github.com/drone-plugins/drone-buildx v1.1.13/go.mod h1:loDc/WeyLXbxABq23i8avR9V4u8t+vVDw7l41Tv2/nk=
+github.com/drone-plugins/drone-buildx v1.1.14 h1:t+z65snQQmmgd9w3QmHXXm0k/BrVQKq/fR31aHLLABc=
+github.com/drone-plugins/drone-buildx v1.1.14/go.mod h1:TR1qqwMYXpe38qHb7am2FFIF/Y0yRucen9BMv35AR00=
 github.com/drone-plugins/drone-plugin-lib v0.4.2 h1:EiJ3Kco6ypP5noBQqVt1bBbuO1eUAumtPvLTX/NVAYg=
 github.com/drone-plugins/drone-plugin-lib v0.4.2/go.mod h1:KwCu92jFjHV3xv2hu5Qg/8zBNvGwbhoJDQw/EwnTvoM=
 github.com/drone/drone-go v1.7.1 h1:ZX+3Rs8YHUSUQ5mkuMLmm1zr1ttiiE2YGNxF3AnyDKw=
@@ -42,6 +44,8 @@ github.com/urfave/cli v1.22.2/go.mod h1:Gos4lmkARVdJ6EkW0WaNv/tZAAMe9V7XWyB60NtX
 golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20220731174439-a90be440212d h1:Sv5ogFZatcgIMMtBSTTAgMYsicp25MXBubjXNDKwm80=
 golang.org/x/sys v0.0.0-20220731174439-a90be440212d/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.1.0 h1:kunALQeHf1/185U1i0GOB/fy1IPRDDpuoOOqRReG57U=
+golang.org/x/sys v0.1.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 gopkg.in/yaml.v2 v2.2.8 h1:obN1ZagJSUGI0Ek/LBmuj4SNLPfIny3KsKFopxRdj10=
