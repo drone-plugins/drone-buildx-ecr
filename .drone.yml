@@ -322,7 +322,7 @@ steps:
         - release/drone-buildx-ecr-darwin-amd64.zst
         - release/drone-buildx-ecr-windows-amd64.zst
       api_key:
-        from_secret: github_token
+        from_secret: cireporunner_github_token
     when:
       event:
         - tag
