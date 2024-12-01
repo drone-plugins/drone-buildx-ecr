@@ -110,6 +110,20 @@ func main() {
 	os.Setenv("PLUGIN_REGISTRY", registry)
 	os.Setenv("DOCKER_USERNAME", username)
 	os.Setenv("DOCKER_PASSWORD", password)
+	os.Setenv("PLUGIN_REPO", username)
+	os.Setenv("DOCKER_PASSWORD", password)
+
+	log.Println("PLUGIN_REGISTRY ", os.Getenv("PLUGIN_REGISTRY"))
+	log.Println("DOCKER_USERNAME ", os.Getenv("DOCKER_USERNAME"))
+	log.Println("DOCKER_PASSWORD ", os.Getenv("DOCKER_PASSWORD"))
+	log.Println("PLUGIN_REPO ", os.Getenv("PLUGIN_REPO"))
+	log.Println("PLUGIN_REGION ", os.Getenv("PLUGIN_REGION"))
+	log.Println("PLUGIN_ACCESS_KEY ", os.Getenv("PLUGIN_ACCESS_KEY"))
+	log.Println("PLUGIN_SECRET_KEY ", os.Getenv("PLUGIN_SECRET_KEY"))
+	log.Println("PLUGIN_ASSUME_ROLE ", os.Getenv("PLUGIN_ASSUME_ROLE"))
+	log.Println("PLUGIN_DOCKER_USERNAME ", os.Getenv("PLUGIN_DOCKER_USERNAME"))
+	log.Println("PLUGIN_DOCKER_PASSWORD ", os.Getenv("PLUGIN_DOCKER_PASSWORD"))
+	log.Println("PLUGIN_DOCKER_REGISTRY ", os.Getenv("PLUGIN_DOCKER_REGISTRY"))
 
 	// invoke the base docker plugin binary
 	docker.Run()
