@@ -2,7 +2,7 @@ module github.com/drone-plugins/drone-buildx-ecr
 
 require (
 	github.com/aws/aws-sdk-go v1.26.7
-	github.com/drone-plugins/drone-buildx v1.1.19
+	github.com/drone-plugins/drone-buildx v1.1.21
 	github.com/joho/godotenv v1.3.0
 )
 
@@ -20,4 +20,6 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-go 1.17
+go 1.22
+
+toolchain go1.22.9
