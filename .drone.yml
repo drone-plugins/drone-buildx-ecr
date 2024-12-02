@@ -55,7 +55,7 @@ platform:
 
 steps:
   - name: go build
-    image: golang:1.19
+    image: golang:1.22
     environment:
       CGO_ENABLED: 0
     commands:
@@ -97,7 +97,7 @@ platform:
 
 steps:
   - name: go build
-    image: golang:1.19
+    image: golang:1.22
     environment:
       CGO_ENABLED: 0
     commands:
@@ -140,7 +140,7 @@ platform:
 
 steps:
   - name: build-push
-    image: golang:1.19
+    image: golang:1.22
     commands:
       - 'go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/amd64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -150,7 +150,7 @@ steps:
         exclude:
           - tag
   - name: build-tag
-    image: golang:1.19
+    image: golang:1.22
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/amd64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -198,7 +198,7 @@ platform:
 
 steps:
   - name: build-push
-    image: golang:1.19
+    image: golang:1.22
     commands:
       - 'go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -209,7 +209,7 @@ steps:
           - tag
 
   - name: build-tag
-    image: golang:1.19
+    image: golang:1.22
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -290,7 +290,7 @@ pool:
 steps:
   - name: build
     pull: always
-    image: golang:1.19
+    image: golang:1.22
     commands:
       - GOOS=linux   GOARCH=amd64   go build -ldflags "-s -w" -a -tags netgo -o release/drone-buildx-ecr-linux-amd64 ./cmd/drone-buildx-ecr
       - GOOS=linux   GOARCH=arm64   go build -ldflags "-s -w" -a -tags netgo -o release/drone-buildx-ecr-linux-arm64 ./cmd/drone-buildx-ecr
