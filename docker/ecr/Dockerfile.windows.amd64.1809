@@ -1,19 +1,10 @@
 # escape=`
-
-# Use server core to extract required dependencies
-FROM mcr.microsoft.com/windows/servercore:ltsc2019 as core
-
-# Use nanoserver for the runtime image
-FROM mcr.microsoft.com/windows/nanoserver:ltsc2019
-USER ContainerAdministrator
-
-ENV GODEBUG=netdns=go
-COPY --from=core /windows/system32/netapi32.dll /windows/system32/netapi32.dll
+FROM plugins/buildx:windows-1809-amd64
 
 LABEL maintainer="Drone.IO Community <drone-dev@googlegroups.com>" `
-  org.label-schema.name="Drone BuildX" `
+  org.label-schema.name="Drone ECR" `
   org.label-schema.vendor="Drone.IO Community" `
   org.label-schema.schema-version="1.0"
 
-ADD release/windows/amd64/buildx-ecr.exe C:/buildx-ecr.exe
-ENTRYPOINT [ "C:\\buildx-ecr.exe" ]
+ADD release/windows/amd64/buildx-ecr.exe C:/bin/buildx-ecr.exe
+ENTRYPOINT [ "C:\\bin\\buildx-ecr.exe" ]
