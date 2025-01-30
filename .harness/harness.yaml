@@ -103,8 +103,7 @@ pipeline:
                           purge: "false"
                       when:
                         stageStatus: Success
-                        condition: |
-                          <+codebase.build.type> == "branch"
+                        condition: <+codebase.build.type> == "tag"
                   - step:
                       type: BuildAndPushDockerRegistry
                       name: BuildAndPushDockerRegistry
