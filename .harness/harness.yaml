@@ -50,7 +50,7 @@ pipeline:
             type: String
             description: ""
             required: false
-            value: architmallik7
+            value: drone-plugins
     - parallel:
         - stage:
             name: windows-1809
