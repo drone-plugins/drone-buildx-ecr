@@ -492,11 +492,11 @@ pipeline:
                       apt-get update -y
                       apt-get install -y zstd
 
-                      release/drone-buildx-ecr-linux-amd64.zst
-                      release/drone-buildx-ecr-linux-arm64.zst
-                      release/drone-buildx-ecr-darwin-arm64.zst
-                      release/drone-buildx-ecr-darwin-amd64.zst
-                      release/drone-buildx-ecr-windows-amd64.zst
+                      release/drone-buildx-ecr-linux-amd64
+                      release/drone-buildx-ecr-linux-arm64
+                      release/drone-buildx-ecr-darwin-arm64
+                      release/drone-buildx-ecr-darwin-amd64
+                      release/drone-buildx-ecr-windows-amd64
               - step:
                   type: Plugin
                   name: Release
