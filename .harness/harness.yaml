@@ -520,3 +520,4 @@ pipeline:
   projectIdentifier: Drone_Plugins
   identifier: dronebuildxecrharness
   name: drone-buildx-ecr-harness
+  allowStageExecutions: true
