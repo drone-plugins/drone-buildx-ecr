@@ -14,12 +14,12 @@ require (
 	github.com/inhies/go-bytesize v0.0.0-20210819104631-275770b98743 // indirect
 	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/sirupsen/logrus v1.9.0 // indirect
+	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/urfave/cli v1.22.2 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-go 1.23.0
+go 1.24.11
 
-toolchain go1.24.2
+toolchain go1.25.5
