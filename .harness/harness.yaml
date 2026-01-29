@@ -33,7 +33,7 @@ pipeline:
                   identifier: Vet
                   spec:
                     connectorRef: Plugins_Docker_Hub_Connector
-                    image: golang:1.23.0
+                    image: golang:1.24.11
                     shell: Sh
                     command: go vet ./...
               - step:
@@ -237,7 +237,7 @@ pipeline:
                       identifier: BuildPush
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.23.0
+                        image: golang:1.24.11
                         shell: Sh
                         command: |-
                           # force go modules
@@ -262,7 +262,7 @@ pipeline:
                       identifier: BuildTag
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.23.0
+                        image: golang:1.24.11
                         shell: Sh
                         command: |-
                           # force go modules
@@ -346,7 +346,7 @@ pipeline:
                       identifier: Build_Push
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.23.0
+                        image: golang:1.24.11
                         shell: Sh
                         command: |-
                           # force go modules
@@ -371,7 +371,7 @@ pipeline:
                       identifier: Build_Tag
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: golang:1.23.0
+                        image: golang:1.24.11
                         shell: Sh
                         command: |-
                           # force go modules
