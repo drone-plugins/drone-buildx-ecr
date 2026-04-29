@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.19.10
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.55.3
 	github.com/aws/aws-sdk-go-v2/service/sts v1.41.7
-	github.com/drone-plugins/drone-buildx v1.3.16
+	github.com/drone-plugins/drone-buildx v1.3.17
 	github.com/joho/godotenv v1.3.0
 )
 
@@ -33,6 +33,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-go 1.25.0
-
-toolchain go1.25.8
+go 1.26
