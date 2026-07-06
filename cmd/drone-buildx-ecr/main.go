@@ -112,6 +112,18 @@ func main() {
 	os.Setenv("DOCKER_USERNAME", username)
 	os.Setenv("DOCKER_PASSWORD", password)
 
+	// Create an isolated Docker config directory for this invocation so that
+	// parallel ECR push steps on the same host VM don't race on the shared
+	// /root/.docker/config.json file. Docker CLI respects the DOCKER_CONFIG
+	// env var automatically for all docker login / docker buildx build calls.
+	// No explicit cleanup is needed: docker.Run() does not return (it calls
+	// os.Exit internally), and the OS reclaims the temp dir on process exit.
+	isolatedDockerConfig, err := os.MkdirTemp("", "harness-buildx-ecr-docker-config-*")
+	if err != nil {
+		log.Fatal(fmt.Sprintf("error creating isolated docker config dir: %v", err))
+	}
+	os.Setenv("DOCKER_CONFIG", isolatedDockerConfig)
+
 	docker.Run()
 }
 
