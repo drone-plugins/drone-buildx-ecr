@@ -868,6 +868,67 @@ pipeline:
                 description: ""
                 required: false
                 value: drone-plugins
+        - stage:
+            name: win-ltsc2025-amd64
+            identifier: winltsc2025amd64
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              caching:
+                enabled: true
+                override: false
+              buildIntelligence:
+                enabled: true
+              infrastructure:
+                type: VM
+                spec:
+                  type: Pool
+                  spec:
+                    poolName: windows-2025
+                    os: Windows
+              execution:
+                steps:
+                  - step:
+                      type: Run
+                      name: Build Binaries
+                      identifier: Build_Binaries
+                      spec:
+                        connectorRef: Drone_Docker_Hub_Connector
+                        image: golang:1.26
+                        shell: Sh
+                        command: |-
+                          # force go modules
+                          export GOPATH=""
+
+                          # disable cgo
+                          export CGO_ENABLED=0
+
+                          set -e
+                          set -x
+
+                          # windows
+                          GOOS=windows
+
+                          go build -buildvcs=false -o release/windows/amd64/buildx-ecr.exe ./cmd/drone-buildx-ecr
+                  - step:
+                      type: Plugin
+                      name: Build and push on TAG
+                      identifier: Build_and_push_on_TAG
+                      spec:
+                        connectorRef: Plugins_Docker_Hub_Connector
+                        image: plugins/docker:21.3.0
+                        settings:
+                          username: drone
+                          password: <+secrets.getValue("Plugins_Docker_Hub_Pat")>
+                          repo: plugins/buildx-ecr
+                          dockerfile: docker/ecr/Dockerfile.windows.amd64.ltsc2025
+                          auto_tag: "true"
+                          auto_tag_suffix: windows-ltsc2025-amd64
+                          purge: "false"
+                      when:
+                        stageStatus: Success
+                        condition: <+codebase.build.type> == "tag"
     - stage:
         name: Manifest and Release
         identifier: ManifestandRelease
