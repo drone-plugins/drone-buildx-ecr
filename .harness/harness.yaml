@@ -876,10 +876,11 @@ pipeline:
             spec:
               cloneCodebase: true
               caching:
-                enabled: true
+                enabled: false
                 override: false
+                paths: []
               buildIntelligence:
-                enabled: true
+                enabled: false
               infrastructure:
                 type: VM
                 spec:
@@ -894,7 +895,7 @@ pipeline:
                       name: Build Binaries
                       identifier: Build_Binaries
                       spec:
-                        connectorRef: Drone_Docker_Hub_Connector
+                        connectorRef: Plugins_Docker_Hub_Connector
                         image: golang:1.26
                         shell: Sh
                         command: |-
