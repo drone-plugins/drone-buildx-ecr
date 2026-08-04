@@ -1010,7 +1010,7 @@ pipeline:
                       identifier: RF_Build_and_Push_on_Tag
                       spec:
                         connectorRef: Plugins_Docker_Hub_Connector
-                        image: plugins/docker:windows-ltsc2025-amd64
+                        image: plugins/docker:21.3.0
                         settings:
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
