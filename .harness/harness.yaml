@@ -363,7 +363,7 @@ pipeline:
                           # linux
                           export GOOS=linux GOARCH=arm64
 
-                          go build -v -ldflags "-X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
+                          go build -buildvcs=false -v -ldflags "-X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
                       when:
                         stageStatus: Success
                         condition: <+codebase.build.type> != "tag"
@@ -388,7 +388,7 @@ pipeline:
                           # linux
                           export GOOS=linux GOARCH=arm64
 
-                          go build -v -ldflags "-X main.version=<+codebase.tag> -X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
+                          go build -buildvcs=false -v -ldflags "-X main.version=<+codebase.tag> -X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
                       when:
                         stageStatus: Success
                         condition: <+codebase.build.type> == "tag"
@@ -608,7 +608,7 @@ pipeline:
                           # linux
                           export GOOS=linux GOARCH=arm64
 
-                          go build -v -ldflags "-X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
+                          go build -buildvcs=false -v -ldflags "-X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
                       when:
                         stageStatus: Success
                         condition: <+codebase.build.type> != "tag"
@@ -633,7 +633,7 @@ pipeline:
                           # linux
                           export GOOS=linux GOARCH=arm64
 
-                          go build -v -ldflags "-X main.version=<+codebase.tag> -X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
+                          go build -buildvcs=false -v -ldflags "-X main.version=<+codebase.tag> -X main.build=<+pipeline.sequenceId>" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr
                       when:
                         stageStatus: Success
                         condition: <+codebase.build.type> == "tag"
