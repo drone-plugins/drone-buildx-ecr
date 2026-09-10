@@ -1141,6 +1141,7 @@ pipeline:
                       api_key: <+secrets.getValue("ci_job_github_pat")>
                       title: <+trigger.tag>
                       files: release/drone-buildx-ecr-*.zst
+                      overwrite: "true"
                   when:
                     stageStatus: Success
                     condition: <+codebase.build.type> == "tag"
