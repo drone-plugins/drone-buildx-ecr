@@ -17,7 +17,7 @@ pipeline:
         spec:
           cloneCodebase: true
           caching:
-            enabled: false
+            enabled: true
             paths: []
           platform:
             os: Linux
@@ -45,6 +45,8 @@ pipeline:
                     image: golang:1.26
                     shell: Sh
                     command: go test -cover ./...
+          buildIntelligence:
+            enabled: true
         variables:
           - name: DRONE_REPO_OWNER
             type: String
@@ -223,7 +225,7 @@ pipeline:
             spec:
               cloneCodebase: true
               caching:
-                enabled: false
+                enabled: true
                 paths: []
               platform:
                 os: Linux
@@ -317,7 +319,7 @@ pipeline:
                         condition: |
                           <+codebase.build.type> == "branch"
               buildIntelligence:
-                enabled: false
+                enabled: true
             variables:
               - name: DRONE_REPO_OWNER
                 type: String
@@ -332,7 +334,7 @@ pipeline:
             spec:
               cloneCodebase: true
               caching:
-                enabled: false
+                enabled: true
                 paths: []
               platform:
                 os: Linux
@@ -426,7 +428,7 @@ pipeline:
                         condition: |
                           <+codebase.build.type> == "branch"    
               buildIntelligence:
-                enabled: false
+                enabled: true
             variables:
               - name: DRONE_REPO_OWNER
                 type: String
@@ -441,7 +443,7 @@ pipeline:
             spec:
               cloneCodebase: true
               caching:
-                enabled: false
+                enabled: true
                 paths: []
               platform:
                 os: Linux
@@ -551,7 +553,7 @@ pipeline:
                         condition: |
                           <+codebase.build.type> == "branch"
               buildIntelligence:
-                enabled: false
+                enabled: true
             variables:
               - name: DRONE_REPO_OWNER
                 type: String
@@ -566,7 +568,7 @@ pipeline:
             spec:
               cloneCodebase: true
               caching:
-                enabled: false
+                enabled: true
                 paths: []
               platform:
                 os: Linux
@@ -676,7 +678,7 @@ pipeline:
                         condition: |
                           <+codebase.build.type> == "branch"    
               buildIntelligence:
-                enabled: false
+                enabled: true
             variables:
               - name: DRONE_REPO_OWNER
                 type: String
