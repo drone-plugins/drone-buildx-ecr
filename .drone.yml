@@ -12,7 +12,7 @@ platform:
 
 steps:
   - name: vet
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - go vet ./...
     environment:
@@ -22,7 +22,7 @@ steps:
         path: /go
 
   - name: test
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - go test -cover ./...
     environment:
@@ -64,6 +64,8 @@ steps:
   - name: build ecr plugin
     image: plugins/docker:20.17.4-windows-1809-amd64
     settings:
+      pull_image: true
+      no_cache: true
       dockerfile: docker/ecr/Dockerfile.windows.amd64.1809
       repo: plugins/buildx-ecr
       username:
@@ -107,6 +109,8 @@ steps:
   - name: build ecr plugin
     image: plugins/docker
     settings:
+      pull_image: true
+      no_cache: true
       dockerfile: docker/ecr/Dockerfile.windows.amd64.ltsc2022
       repo: plugins/buildx-ecr
       username:
@@ -142,7 +146,7 @@ platform:
 
 steps:
   - name: build-push
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - 'go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/amd64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -152,7 +156,7 @@ steps:
         exclude:
           - tag
   - name: build-tag
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/amd64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -163,6 +167,8 @@ steps:
   - name: publish
     image: plugins/docker:18
     settings:
+      pull_image: true
+      no_cache: true
       auto_tag: true
       auto_tag_suffix: linux-amd64
       daemon_off: false
@@ -200,7 +206,7 @@ platform:
 
 steps:
   - name: build-push
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - 'go build -v -ldflags "-X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -211,7 +217,7 @@ steps:
           - tag
 
   - name: build-tag
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v} -X main.build=${DRONE_BUILD_NUMBER}" -a -tags netgo -o release/linux/arm64/buildx-ecr ./cmd/drone-buildx-ecr'
     environment:
@@ -223,6 +229,8 @@ steps:
   - name: publish
     image: plugins/docker:18
     settings:
+      pull_image: true
+      no_cache: true
       auto_tag: true
       auto_tag_suffix: linux-arm64
       daemon_off: false
@@ -292,7 +300,7 @@ pool:
 steps:
   - name: build
     pull: always
-    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
     commands:
       - GOOS=linux   GOARCH=amd64   go build -ldflags "-s -w" -a -tags netgo -o release/drone-buildx-ecr-linux-amd64 ./cmd/drone-buildx-ecr
       - GOOS=linux   GOARCH=arm64   go build -ldflags "-s -w" -a -tags netgo -o release/drone-buildx-ecr-linux-arm64 ./cmd/drone-buildx-ecr

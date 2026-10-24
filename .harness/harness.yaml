@@ -33,7 +33,7 @@ pipeline:
                   identifier: Vet
                   spec:
                     connectorRef: HHI_Public_Images
-                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                     shell: Sh
                     command: go vet ./...
               - step:
@@ -42,7 +42,7 @@ pipeline:
                   identifier: Test
                   spec:
                     connectorRef: HHI_Public_Images
-                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                     shell: Sh
                     command: go test -cover ./...
           buildIntelligence:
@@ -98,6 +98,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: drone
                           password: <+secrets.getValue("Plugins_Docker_Hub_Pat")>
                           repo: plugins/buildx-ecr
@@ -113,6 +115,10 @@ pipeline:
                       name: BuildAndPushDockerRegistry
                       identifier: BuildAndPushDockerRegistry
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: Plugins_Docker_Hub_Connector
                         repo: plugins/buildx-ecr
                         tags:
@@ -188,6 +194,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: drone
                           password: <+secrets.getValue("Plugins_Docker_Hub_Pat")>
                           repo: plugins/buildx-ecr
@@ -203,6 +211,10 @@ pipeline:
                       name: BuildAndPushDockerRegistry
                       identifier: BuildAndPushDockerRegistry
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: Plugins_Docker_Hub_Connector
                         repo: plugins/buildx-ecr
                         tags:
@@ -243,7 +255,7 @@ pipeline:
                       identifier: BuildPush
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -268,7 +280,7 @@ pipeline:
                       identifier: BuildTag
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -295,6 +307,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           base_image_registry: harness0.harness.io
                           base_image_username: <+secrets.getValue("harness0HARUsername")>
                           base_image_password: <+secrets.getValue("harness0HARPAT")>
@@ -313,6 +327,10 @@ pipeline:
                       name: BuildAndPushDockerRegistry
                       identifier: BuildAndPushDockerRegistry
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         baseImageConnectorRefs:
                           - HHI_Public_Images
                         connectorRef: Plugins_Docker_Hub_Connector
@@ -357,7 +375,7 @@ pipeline:
                       identifier: Build_Push
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -382,7 +400,7 @@ pipeline:
                       identifier: Build_Tag
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -409,6 +427,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           base_image_registry: harness0.harness.io
                           base_image_username: <+secrets.getValue("harness0HARUsername")>
                           base_image_password: <+secrets.getValue("harness0HARPAT")>
@@ -427,6 +447,10 @@ pipeline:
                       name: BuildAndPushDockerRegistry
                       identifier: BuildAndPushDockerRegistry
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         baseImageConnectorRefs:
                           - HHI_Public_Images
                         connectorRef: Plugins_Docker_Hub_Connector
@@ -482,7 +506,7 @@ pipeline:
                       identifier: BuildPush
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -507,7 +531,7 @@ pipeline:
                       identifier: BuildTag
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -534,6 +558,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
                           repo: harnesssecure/buildx-ecr
@@ -552,6 +578,10 @@ pipeline:
                       name: HHI Build and Push on Branch
                       identifier: rf_build_push_branch
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: harnesssecure
                         repo: harnesssecure/buildx-ecr
                         tags:
@@ -607,7 +637,7 @@ pipeline:
                       identifier: Build_Push
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -632,7 +662,7 @@ pipeline:
                       identifier: Build_Tag
                       spec:
                         connectorRef: HHI_Public_Images
-                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                        image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                         shell: Sh
                         command: |-
                           # force go modules
@@ -659,6 +689,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
                           repo: harnesssecure/buildx-ecr
@@ -677,6 +709,10 @@ pipeline:
                       name: HHI Build and Push on Branch
                       identifier: rf_build_push_branch
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: harnesssecure
                         repo: harnesssecure/buildx-ecr
                         tags:
@@ -759,6 +795,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
                           repo: harnesssecure/buildx-ecr
@@ -774,6 +812,10 @@ pipeline:
                       name: RF Build and Push on Branch
                       identifier: rf_build_push_branch
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: harnesssecure
                         repo: harnesssecure/buildx-ecr
                         tags:
@@ -853,6 +895,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
                           repo: harnesssecure/buildx-ecr
@@ -868,6 +912,10 @@ pipeline:
                       name: RF Build and Push on Branch
                       identifier: rf_build_push_branch
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: harnesssecure
                         repo: harnesssecure/buildx-ecr
                         tags:
@@ -938,6 +986,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker:21.3.0
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: drone
                           password: <+secrets.getValue("Plugins_Docker_Hub_Pat")>
                           repo: plugins/buildx-ecr
@@ -953,6 +1003,10 @@ pipeline:
                       name: Build and Push on Branch
                       identifier: BuildAndPushDockerRegistry_ltsc2025
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: Plugins_Docker_Hub_Connector
                         repo: plugins/buildx-ecr
                         tags:
@@ -1032,6 +1086,8 @@ pipeline:
                         connectorRef: Plugins_Docker_Hub_Connector
                         image: plugins/docker:21.3.0
                         settings:
+                          pull_image: true
+                          no_cache: true
                           username: <+secrets.getValue("harnesssecureusername")>
                           password: <+secrets.getValue("dockerHarnessSecurePwd")>
                           repo: harnesssecure/buildx-ecr
@@ -1047,6 +1103,10 @@ pipeline:
                       name: RF Build and Push on Branch
                       identifier: rf_build_push_branch
                       spec:
+                        envVariables:
+                          PLUGIN_NO_CACHE: "true"
+                          PLUGIN_PULL_IMAGE: "true"
+                          PLUGIN_ENABLE_CACHE: "false"
                         connectorRef: harnesssecure
                         repo: harnesssecure/buildx-ecr
                         tags:
@@ -1129,7 +1189,7 @@ pipeline:
                   name: Prepare patched Go SDK
                   identifier: Build_GoSDK
                   spec:
-                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10@sha256:718fddf012b3a305e936ae9964e5a642036bcb7b4c6c0786e2f78f238d637db8
                     shell: Sh
                     command: mkdir -p .hhi-go-toolchain && cp -a /usr/lib/go/. .hhi-go-toolchain/
                     connectorRef: HHI_Public_Images
@@ -1139,7 +1199,7 @@ pipeline:
                   identifier: Build
                   spec:
                     connectorRef: HHI_Public_Images
-                    image: harness0.harness.io/oci/docker_artifacts/hhi/harnessos-alpine:1
+                    image: harness0.harness.io/oci/docker_artifacts/hhi/harnessos-alpine:1@sha256:290a37c85b4284d2c11fa0778e5da79643d912a1f5a57d6f701b77644503b7e7
                     shell: Sh
                     command: |-
                       export PATH="$PWD/.hhi-go-toolchain/bin:$PATH" GOPATH=/go GOTOOLCHAIN=local
